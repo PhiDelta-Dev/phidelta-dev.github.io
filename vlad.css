@@ -1,5 +1,17 @@
-.form
+table
 {
-    width:200px;
-    padding:20px;
+    border-collapse: collapse;
+}
+
+.panel
+{
+    display: inline-block;
+vertical-align: top;
+border: 1px solid;
+align-self: top;
+}
+
+#table_output
+{
+border: 1px solid;
 }
