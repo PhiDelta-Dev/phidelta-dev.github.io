@@ -74,6 +74,11 @@ function compute_damage()
     let void_staff = Boolean(document.forms["form_input"]["void_staff"].checked);
     let shadowflame = Boolean(document.forms["form_input"]["shadowflame"].checked);
 
+    //Read stats from basic & epic items
+    let basic_epic_ap = Number(document.forms["form_input"]["basic_epic_ap"].value);
+    let basic_epic_hp = Number(document.forms["form_input"]["basic_epic_hp"].value);
+    let basic_epic_percent_pen = Number(document.forms["form_input"]["basic_epic_percent_pen"].value);
+
     //Read target
     let target_mr = Number(document.forms["form_input"]["target_mr"].value);
     let target_hp = Number(document.forms["form_input"]["target_hp"].value);
@@ -166,6 +171,11 @@ function compute_damage()
         ap += 90;
         bonus_hp += 300;
     }
+
+	//Basic & epic items
+	ap += basic_epic_ap;
+	bonus_hp += basic_epic_hp;
+	percent_pen += basic_epic_percent_pen;
 
     //Magical Opus & Crimson Pact
     let ap_old = ap;
