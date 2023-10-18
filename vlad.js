@@ -58,6 +58,7 @@ function compute_damage()
     let glory = Number(document.forms["form"]["glory"].value);
 
     //Read runes
+    let gathering_storm = Boolean(document.forms["form"]["gathering_storm"].checked);
     let ap_shard_count = Number(document.forms["form"]["ap_shards"].value);
     let hp_shard = Boolean(document.forms["form"]["hp_shard"].checked);
 
@@ -81,11 +82,14 @@ function compute_damage()
     var ap = 0.0;
     var bonus_hp = 0.0;  
     var flat_pen = 0;
-    var percent_pen = 0; 
+    var percent_pen = 0;
 
     //Gathering Storm
-    let ten_min = Math.floor(minute / 10);
-    ap += 4 * ten_min * (ten_min + 1);
+    if(gathering_storm)
+    {
+        let ten_min = Math.floor(minute / 10);
+        ap += 4 * ten_min * (ten_min + 1);
+    }
 
     //AP shards
     ap += 9 * ap_shard_count;
@@ -176,7 +180,7 @@ function compute_damage()
         bonus_hp += ap_old * 1.6;
     }
 
-    let max_hp = base_hp[level + 1] + bonus_hp;
+    let max_hp = base_hp[level - 1] + bonus_hp;
     let multiplier = damage_multiplier(target_mr, flat_pen, percent_pen, cinderbloom, target_hp);
 
     //Output stats
@@ -187,10 +191,40 @@ function compute_damage()
     document.getElementById("result_damage_multiplier").innerHTML = multiplier.toFixed(4);
 
     //Output damage
-    document.getElementById("result_damage_transfusion").innerHTML =  (multiplier * transfusion_damage(rank_transfusion, ap, false)).toFixed(1);
-    document.getElementById("result_damage_transfusion_crimson_rush").innerHTML = (multiplier * transfusion_damage(rank_transfusion, ap, true)).toFixed(1);
-    document.getElementById("result_damage_sanguine_pool").innerHTML = ((hypershot ? 1.1 : 1.0) * multiplier * sanguine_pool_damage(rank_sanguine_pool, bonus_hp)).toFixed(1);
-    document.getElementById("result_damage_tides_of_blood_min").innerHTML = ((hypershot ? 1.1 : 1.0) * multiplier * tides_of_blood_damage(rank_tides_of_blood, ap, max_hp, 0.0)).toFixed(1);
-    document.getElementById("result_damage_tides_of_blood_max").innerHTML = ((hypershot ? 1.1 : 1.0) * multiplier * tides_of_blood_damage(rank_tides_of_blood, ap, max_hp, 1.0)).toFixed(1);
-    document.getElementById("result_damage_hemoplague").innerHTML = (multiplier * hemoplague_damage(rank_hemoplague, ap)).toFixed(1);
+    if(rank_transfusion > 0)
+    {
+        document.getElementById("result_damage_transfusion").innerHTML = (multiplier * transfusion_damage(rank_transfusion, ap, false)).toFixed(1);
+        document.getElementById("result_damage_transfusion_crimson_rush").innerHTML = (multiplier * transfusion_damage(rank_transfusion, ap, true)).toFixed(1);
+    }
+    else
+    {
+        document.getElementById("result_damage_transfusion").innerHTML = "-";
+        document.getElementById("result_damage_transfusion_crimson_rush").innerHTML = "-";
+    }
+    if(rank_sanguine_pool > 0)
+    {
+        document.getElementById("result_damage_sanguine_pool").innerHTML = ((hypershot ? 1.1 : 1.0) * multiplier * sanguine_pool_damage(rank_sanguine_pool, bonus_hp)).toFixed(1);
+    }
+    else
+    {
+        document.getElementById("result_damage_sanguine_pool").innerHTML = "-";
+    }
+    if(rank_sanguine_pool > 0)
+    {
+        document.getElementById("result_damage_tides_of_blood_min").innerHTML = ((hypershot ? 1.1 : 1.0) * multiplier * tides_of_blood_damage(rank_tides_of_blood, ap, max_hp, 0.0)).toFixed(1);
+        document.getElementById("result_damage_tides_of_blood_max").innerHTML = ((hypershot ? 1.1 : 1.0) * multiplier * tides_of_blood_damage(rank_tides_of_blood, ap, max_hp, 1.0)).toFixed(1);
+    }
+    else
+    {
+        document.getElementById("result_damage_tides_of_blood_min").innerHTML = "-";
+        document.getElementById("result_damage_tides_of_blood_max").innerHTML = "-";
+    }
+    if(rank_hemoplague > 0)
+    {
+        document.getElementById("result_damage_hemoplague").innerHTML = (multiplier * hemoplague_damage(rank_hemoplague, ap)).toFixed(1);
+    }
+    else
+    {
+        document.getElementById("result_damage_hemoplague").innerHTML = "-";
+    }
 } 
