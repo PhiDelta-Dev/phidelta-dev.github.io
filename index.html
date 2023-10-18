@@ -1,177 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="vlad.js"></script>
-        <link rel = "stylesheet" type = "text/css" href = "vlad.css"/>
-    </head>
-    <body>
-        <table>
-            <tr>
-                <form id = "form">
-                    <table id = "table_input">
-                        <td class = "panel">
-                            <table>
-                                <tr>Game state</tr>
-                                <tr>
-                                    <td>Minute:</td>
-                                    <td><input id = "minute" type = "number"  min = "0" max = "59" value = "1"></td>
-                                </tr>
-                                <tr>
-                                    <td>Level:</td>
-                                    <td><input id = "level" type = "number"  min = "1" max = "18" value = "1"></td>
-                                </tr>
-                                <tr>
-                                    <td>Transfusion rank:</td>
-                                    <td><input id = "rank_transfusion" type = "number"  min = "0" max = "5" value = "0"></td>
-                                </tr>
-                                <tr>
-                                    <td>Sanguine Pool rank:</td>
-                                    <td><input id = "rank_sanguine_pool" type = "number"  min = "0" max = "5" value = "0"></td>
-                                </tr>
-                                <tr>
-                                    <td>Tides of Blood rank:</td>
-                                    <td><input id = "rank_tides_of_blood" type = "number"  min = "0" max = "5" value = "0"></td>
-                                </tr>
-                                <tr>
-                                    <td>Hemoplague rank:</td>
-                                    <td><input id = "rank_hemoplague" type = "number"  min = "0" max = "3" value = "0"></td>
-                                </tr>
-                                <tr>
-                                    <td>Glory:</td>
-                                    <td><input id = "glory" type = "number"  min = "0" max = "25" value = "0"></td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td class = "panel">
-                            <table>
-                                <tr>Runes</tr>
-                                <tr>
-                                    <td>Gathering Storm:</td>
-                                    <td><input id = "gathering_storm" type = "checkbox" checked = "checked"></td>
-                                </tr>
-                                <tr>
-                                    <td>AP shards:</td>
-                                    <td><input id = "ap_shards" type = "number"  min = "0" max = "2" value = "1"></td>
-                                </tr>
-                                <tr>
-                                    <td>HP shard:</td>
-                                    <td><input id = "hp_shard" type = "checkbox" checked = "checked"></td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td class = "panel">        
-                            <table>
-                                <tr>Items</tr>
-                                <tr>
-                                    <td>Doran's Ring:</td>
-                                    <td><input id = "dorans_ring" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Dark Seal:</td>
-                                    <td><input id = "dark_seal" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Mejai's Soulstealer:</td>
-                                    <td><input id = "mejais_soulstealer" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Sorcerer's Shoes:</td>
-                                    <td><input id = "sorcerers_shoes" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Hextech Rocketbelt:</td>
-                                    <td><input id = "hextech_rocketbelt" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Night Harvester:</td>
-                                    <td><input id = "night_harvester" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Horizon Focus:</td>
-                                    <td><input id = "horizon_focus" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Rabadon's Deathcap:</td>
-                                    <td><input id = "rabadons_deathcap" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Void Staff:</td>
-                                    <td><input id = "void_staff" type = "checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Shadowflame:</td>
-                                    <td><input id = "shadowflame" type = "checkbox"></td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td class = "panel">
-                            <table>
-                                <tr>Target</tr>
-                                <tr>
-                                    <td>Target MR:</td>
-                                    <td><input id = "target_mr" type = "number"  min = "0" max = "999" value = "30"></td>
-                                </tr>
-                                <tr>
-                                    <td>Target HP:</td>
-                                    <td><input id = "target_hp" type = "number"  min = "1" max = "9999" value = "2000"></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </table>
-                </form>
-            </tr>
-            <tr>
-                <button onclick = "compute_damage()">Calculate</button>
-            </tr>
-            <tr>
-                <table id = "table_output">
-                    <tr>
-                        <td>AP:</td>
-                        <td id = "result_ap"></td>
-                    </tr>
-                    <tr>
-                        <td>Max HP:</td>
-                        <td id = "result_hp"></td>
-                    </tr>
-                    <tr>
-                        <td>Flat pen:</td>
-                        <td id = "result_flat_pen"></td>
-                    </tr>
-                    <tr>
-                        <td>% pen:</td>
-                        <td id = "result_percent_pen"></td>
-                    </tr>
 
-                    <tr>
-                        <td>Damage multiplier (no Hemoplague):</td>
-                        <td id = "result_damage_multiplier"></td>
-                    </tr>
-                    <tr>
-                        <td>Transfusion damage (no Crimson Rush):</td>
-                        <td id = "result_damage_transfusion"></td>
-                    </tr>
-                    <tr>
-                        <td>Transfusion damage (Crimson Rush):</td>
-                        <td id = "result_damage_transfusion_crimson_rush"></td>
-                    </tr>
-                    <tr>
-                        <td>Sanguine Pool damage/tick:</td>
-                        <td id = "result_damage_sanguine_pool"></td>
-                    </tr>
-                    <tr>
-                        <td>Tides of Blood damage (min):</td>
-                        <td id = "result_damage_tides_of_blood_min"></td>
-                    </tr>
-                    <tr>
-                        <td>Tides of Blood damage (max):</td>
-                        <td id = "result_damage_tides_of_blood_max"></td>
-                    </tr>
-                    <tr>
-                        <td>Hemoplague damage (self-amplified):</td>
-                        <td id = "result_damage_hemoplague"></td>
-                    </tr>
-                </table>
-            </tr>
-        </table>
-    </body>
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1"/>
+	<title>vlad-calc</title>
+	<link rel = "stylesheet" type = "text/css" href = "vlad.css"/>
+	<script src = "vlad.js"></script>
+</head>
+
+<body>
+	<div class = "input_wrapper">
+		<form name = "form_input" onsubmit = "return compute_damage()">
+			<div class = "input_section">
+				<h2>Game state</h2>
+				<div class = "input_box">
+					<label>Minute:<input id = "minute" type = "number" min = "0" max = "59" value = "1" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Level:<input id = "level" type = "number" min = "1" max = "18" value = "1" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Transfusion rank:<input id = "rank_transfusion" type = "number" min = "0" max = "5" value = "0" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Sanguine pool:<input id = "rank_sanguine_pool" type = "number" min = "0" max = "5" value = "0" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Tides of blood rank:<input id = "rank_tides_of_blood" type = "number" min = "0" max = "5" value = "0" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Hemoplague rank:<input id = "rank_hemoplague" type = "number" min = "0" max = "3" value = "0" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Glory:<input id = "glory" type = "number" min = "0" max = "25" value = "0" required></input></label>
+				</div>
+			</div>
+
+			<div class = "input_section">
+				<h2>Runes</h2>
+				<div class = "input_box">
+					<label>Gathering Storm:<input id = "gathering_storm" type = "checkbox" checked = "checked"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>AP shards:<input id = "ap_shards" type = "number" min = "0" max = "2" value = "1" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>HP shard:<input id = "hp_shard" type = "checkbox" checked = "checked"></input></label>
+				</div>
+			</div>
+
+			<div class = "input_section">
+				<h2>Items</h2>
+				<div class = "input_box">
+					<label>Doran's Ring:<input id = "dorans_ring" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Dark Seal:<input id = "dark_seal" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Mejai's Soulstealer:<input id = "mejais_soulstealer" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Sorcerer's Shoes:<input id = "sorcerers_shoes" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Hextech Rocketbelt:<input id = "hextech_rocketbelt" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Night Harvester:<input id = "night_harvester" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Horizon Focus:<input id = "horizon_focus" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Rabadon's Deathcap:<input id = "rabadons_deathcap" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Void Staff:<input id = "void_staff" type = "checkbox"></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Shadowflame:<input id = "shadowflame" type = "checkbox"></input></label>
+				</div>
+			</div>
+
+			<div class = "input_section">
+				<h2>Target</h2>
+				<div class = "input_box">
+					<label>Target MR:<input id = "target_mr" type = "number" min = "0" max = "999" value = "30" required></input></label>
+				</div>
+				<div class = "input_box">
+					<label>Target HP:<input id = "target_hp" type = "number" min = "1" max = "9999" value = "2000" required></input></label>
+				</div>
+			</div>
+
+			<button type = "submit" class = "button_submit">Calculate</button>
+		</form>
+	</div>
+
+	<div class = "output_wrapper">
+		<h2>Stats</h2>
+		<div class = "output_section">
+			<p>AP:<span id= "result_ap"></span></p>
+			<p>Max HP:<span id= "result_hp"></span></p>
+			<p>Flat pen:<span id= "result_flat_pen"></span></p>
+			<p>%pen:<span id= "result_percent_pen"></span></p>
+			<p>Damage multiplier (no Hemoplague):<span id= "result_damage_multiplier"></span></p>
+		</div>
+		<h2>Ability Damage</h2>
+		<div class = "output_section">
+			<p>Transfusion damage (no Crimson Rush):<span id= "result_damage_transfusion"></span></p>
+			<p>Transfusion damage (Crimson Rush):<span id= "result_damage_transfusion_crimson_rush"></span></p>
+			<p>Sanguine Pool damage/tick:<span id= "result_damage_sanguine_pool"></span></p>
+			<p>Tides of Blood damage (min):<span id= "result_damage_tides_of_blood_min"></span></p>
+			<p>Tides of Blood damage (max):<span id= "result_damage_tides_of_blood_max"></span></p>
+			<p>Hemoplague damage (self-amplified):<span id= "result_damage_hemoplague"></span></p>
+		</div>
+	</div>
+</body>
 </html>

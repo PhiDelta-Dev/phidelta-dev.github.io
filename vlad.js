@@ -49,34 +49,34 @@ let base_hp = [607, 686.2, 769.25, 856.15, 946.9, 1041.5, 1139.95, 1242.25, 1348
 function compute_damage()
 {
     //Read game state
-    let minute = Number(document.forms["form"]["minute"].value);
-    let level = Number(document.forms["form"]["level"].value);
-    let rank_transfusion = Number(document.forms["form"]["rank_transfusion"].value);
-    let rank_sanguine_pool = Number(document.forms["form"]["rank_sanguine_pool"].value);
-    let rank_tides_of_blood = Number(document.forms["form"]["rank_tides_of_blood"].value);
-    let rank_hemoplague = Number(document.forms["form"]["rank_hemoplague"].value);
-    let glory = Number(document.forms["form"]["glory"].value);
+    let minute = Number(document.forms["form_input"]["minute"].value);
+    let level = Number(document.forms["form_input"]["level"].value);
+    let rank_transfusion = Number(document.forms["form_input"]["rank_transfusion"].value);
+    let rank_sanguine_pool = Number(document.forms["form_input"]["rank_sanguine_pool"].value);
+    let rank_tides_of_blood = Number(document.forms["form_input"]["rank_tides_of_blood"].value);
+    let rank_hemoplague = Number(document.forms["form_input"]["rank_hemoplague"].value);
+    let glory = Number(document.forms["form_input"]["glory"].value);
 
     //Read runes
-    let gathering_storm = Boolean(document.forms["form"]["gathering_storm"].checked);
-    let ap_shard_count = Number(document.forms["form"]["ap_shards"].value);
-    let hp_shard = Boolean(document.forms["form"]["hp_shard"].checked);
+    let gathering_storm = Boolean(document.forms["form_input"]["gathering_storm"].checked);
+    let ap_shard_count = Number(document.forms["form_input"]["ap_shards"].value);
+    let hp_shard = Boolean(document.forms["form_input"]["hp_shard"].checked);
 
     //Read items
-    let sorcerers_shoes = Boolean(document.forms["form"]["sorcerers_shoes"].checked);
-    let dorans_ring = Boolean(document.forms["form"]["dorans_ring"].checked);
-    let dark_seal = Boolean(document.forms["form"]["dark_seal"].checked);
-    let mejais_soulstealer = Boolean(document.forms["form"]["mejais_soulstealer"].checked);
-    let hextech_rocketbelt = Boolean(document.forms["form"]["hextech_rocketbelt"].checked);
-    let night_harvester = Boolean(document.forms["form"]["night_harvester"].checked);
-    let rabadons_deathcap = Boolean(document.forms["form"]["rabadons_deathcap"].checked);
-    let horizon_focus = Boolean(document.forms["form"]["horizon_focus"].checked);
-    let void_staff = Boolean(document.forms["form"]["void_staff"].checked);
-    let shadowflame = Boolean(document.forms["form"]["shadowflame"].checked);
+    let sorcerers_shoes = Boolean(document.forms["form_input"]["sorcerers_shoes"].checked);
+    let dorans_ring = Boolean(document.forms["form_input"]["dorans_ring"].checked);
+    let dark_seal = Boolean(document.forms["form_input"]["dark_seal"].checked);
+    let mejais_soulstealer = Boolean(document.forms["form_input"]["mejais_soulstealer"].checked);
+    let hextech_rocketbelt = Boolean(document.forms["form_input"]["hextech_rocketbelt"].checked);
+    let night_harvester = Boolean(document.forms["form_input"]["night_harvester"].checked);
+    let rabadons_deathcap = Boolean(document.forms["form_input"]["rabadons_deathcap"].checked);
+    let horizon_focus = Boolean(document.forms["form_input"]["horizon_focus"].checked);
+    let void_staff = Boolean(document.forms["form_input"]["void_staff"].checked);
+    let shadowflame = Boolean(document.forms["form_input"]["shadowflame"].checked);
 
     //Read target
-    let target_mr = Number(document.forms["form"]["target_mr"].value);
-    let target_hp = Number(document.forms["form"]["target_hp"].value);
+    let target_mr = Number(document.forms["form_input"]["target_mr"].value);
+    let target_hp = Number(document.forms["form_input"]["target_hp"].value);
 
     //Modified stats
     var ap = 0.0;
@@ -227,4 +227,6 @@ function compute_damage()
     {
         document.getElementById("result_damage_hemoplague").innerHTML = "-";
     }
+
+	return false;
 } 

@@ -1,12 +1,87 @@
-.panel
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*
 {
-    display: inline-block;
-    vertical-align: top;
-    border: 1px solid;
-    align-self: top;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 
-#table_output
+body
 {
-    border: 1px solid;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	min-height: 100vh;
+
+	background-color: rgb(55, 50, 60);
+	color: white;
+}
+
+.input_wrapper
+{
+	width: 240px;
+	background: rgb(40, 30, 45);
+	color: white;
+}
+
+.output_wrapper
+{
+	width: 480px;
+	background: rgb(40, 30, 45);
+	color: white;
+}
+
+.input_wrapper h2
+{
+	font-size: 24px;
+	text-align: center;
+	background: rgb(30, 20, 35);
+	color:rgb(255, 144, 116);
+}
+
+.output_wrapper h2
+{
+	font-size: 24px;
+	text-align: center;
+	background: rgb(30, 20, 35);
+	color:rgb(255, 144, 116);
+}
+
+.input_wrapper .input_box
+{
+	position: relative;
+	font-size: 16px;
+	margin: 4px;
+}
+
+.output_wrapper p
+{
+	position: relative;
+	font-size: 16px;
+	margin: 4px;
+}
+
+.input_box input
+{
+	position: sticky;
+	left: 100%;
+	width: 64px;
+}
+
+.output_wrapper span
+{
+	position: sticky;
+	left: 100%;
+	width: 64px;
+}
+
+.input_wrapper button
+{
+	width: 100%;
+	font-size: 36px;
+	background-color: rgb(30, 20, 35);
+	color: rgb(149, 255, 172);
+	border: 2px solid rgb(149, 255, 172);
+	cursor: pointer;
 }
